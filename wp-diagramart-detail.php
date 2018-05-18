@@ -31,28 +31,18 @@ function register_shortcodes(){
 
 add_action( 'init', 'register_shortcodes');
 
-function wpdad_plugin_url( $path = '' ) {
-	$url = plugins_url( $path, WPDAD_PLUGIN );
-
-	if ( is_ssl() && 'http:' == substr( $url, 0, 5 ) ) {
-		$url = 'https:' . substr( $url, 5 );
-	}
-
-	return $url;
-}
-
 function wpdad_do_enqueue_scripts() {
 	wpdad_enqueue_scripts();
 	wpdad_enqueue_styles();
 }
 
 function wpdad_enqueue_scripts() {
-	wp_enqueue_script( 'diagramart-detail', wpdad_plugin_url( 'includes/js/diagramart.js' ));
+  wp_enqueue_script( 'diagramart-detail', plugins_url( 'includes/js/diagramart.js', __FILE__ ) );
 	do_action( 'wpdad_enqueue_scripts' );
 }
 
 function wpdad_enqueue_styles() {
-	wp_enqueue_style( 'diagramart-detail', wpdad_plugin_url( 'includes/css/diagramart.css' ));
+  wp_enqueue_style( 'diagramart-detail', plugins_url( 'includes/css/diagramart.css', __FILE__ ) );
 	do_action( 'wpdad_enqueue_styles' );
 }
 
